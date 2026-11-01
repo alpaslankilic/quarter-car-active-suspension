@@ -1,0 +1,14 @@
+{
+  "bump_start_s": 0.2,
+  "bump_end_s": 0.45,
+  "final_settled_at_s": [
+    2.781,
+    1.198,
+    1.181
+  ],
+  "limiting_case": "Passive",
+  "last_settled_at_s": 2.781,
+  "stop_time_s": 3.015,
+  "tail_fraction": 0.1,
+  "criteria": "2% of each case's peaks: body acceleration, suspension travel, tire deflection, actuator force and power"
+}

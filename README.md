@@ -15,9 +15,10 @@ the plant and control gains. The editable model is `quarter_car.slx`.
 ![Road input and body response](results/01_body_response.png)
 
 **Figure 1. Ride response to a road bump.** The 20 mm raised-cosine bump begins
-at 0.20 s and ends at 0.45 s. LQR reduces body-acceleration RMS from 0.3469 to
-0.1029 m/s² in this test, a 70.34% reduction. All cases are shown until after
-the slowest post-bump response settles, at 3.248 s.
+at 0.20 s and ends at 0.45 s. LQR reduces body-acceleration RMS from 0.3610 to
+0.1070 m/s² in this test, a 70.34% reduction. All cases are shown until after
+the slowest post-bump response settles. The passive case settles at
+2.781 s and sets the common 3.015 s endpoint.
 
 ![Suspension travel and tire deflection](results/02_suspension_travel.png)
 
@@ -34,8 +35,11 @@ body-to-wheel velocity; this is not electrical supply power or actuator efficien
 Bump onset and completion are marked on every time-domain panel.
 
 PNG previews, vector PDFs, CSV signals, controller gains and metrics are in
-`results/`. The horizon follows a 2%-of-peak settling rule for acceleration,
-suspension travel and tire deflection, with 20% headroom. RMS values use the
+`results/`. The horizon follows a 2%-of-peak settling rule across all three controllers
+and all plotted physical responses: acceleration, suspension travel, tire
+deflection, actuator force and power. The passive case is limiting; 10% of its
+post-bump recovery duration is retained as a short tail. `results/timing.json`
+records the measured settling points. RMS values use the
 same interval, from bump onset to the common endpoint.
 
 ## Model and checks

@@ -11,5 +11,5 @@ p.bumpHeight = 0.02;
 p.bumpTime = 0.2;
 p.bumpDuration = 0.25;
 p.sampleTime = 0.001;
-p.stopTime = 3.248;
+p.stopTime = 3.015;
 end

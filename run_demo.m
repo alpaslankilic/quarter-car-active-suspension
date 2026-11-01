@@ -13,10 +13,10 @@ settling = zeros(3, 1);
 for k = 1:3
     states = solve_reference(probe, p, A, Bu, Br, gains(k, :));
     signals = derived_signals(probe, states, p, A, Bu, gains(k, :));
-    settling(k) = settling_duration(probe, signals(:, 1:3), p);
+    settling(k) = settling_duration(probe,signals,p);
 end
 bumpEnd = p.bumpTime + p.bumpDuration;
-p.stopTime = ceil((bumpEnd + 1.2*max(settling))/p.sampleTime)*p.sampleTime;
+p.stopTime = ceil((bumpEnd + 1.1*max(settling))/p.sampleTime)*p.sampleTime;
 t = (0:p.sampleTime:p.stopTime).';
 road = road_profile(t, p);
 roadInput = timeseries(road, t);
@@ -53,7 +53,9 @@ for k = 1:3
     metrics(k).peak_abs_actuator_power_W = max(abs(response{k}(:, 5)));
     metrics(k).minimum_tire_normal_force_N = min(contact);
     metrics(k).ode_max_state_error = error;
-    metrics(k).post_bump_settling_s = settling(k);
+    observedSettling = settling_duration(t,response{k},p);
+    assert(p.stopTime>bumpEnd+observedSettling,'Plot truncates post-bump settling.');
+    metrics(k).post_bump_settling_s = observedSettling;
     data = array2table([t, road, states, response{k}], 'VariableNames', ...
         {'time_s','road_m','body_m','body_velocity_m_s','wheel_m', ...
         'wheel_velocity_m_s','body_acceleration_m_s2','suspension_travel_m', ...
@@ -65,8 +67,18 @@ report.stop_time_s = p.stopTime;
 report.lqr_acceleration_rms_change_percent = 100*( ...
     metrics(3).body_acceleration_rms_m_s2/metrics(1).body_acceleration_rms_m_s2 - 1);
 report.verification = 'PASS';
+[latest,limitingCase] = max([metrics.post_bump_settling_s]);
+timing.bump_start_s = p.bumpTime;
+timing.bump_end_s = bumpEnd;
+timing.final_settled_at_s = bumpEnd+[metrics.post_bump_settling_s];
+timing.limiting_case = names{limitingCase};
+timing.last_settled_at_s = bumpEnd+latest;
+timing.stop_time_s = p.stopTime;
+timing.tail_fraction = 0.1;
+timing.criteria = '2% of each case''s peaks: body acceleration, suspension travel, tire deflection, actuator force and power';
 write_json('results/metrics.json', report);
 write_json('results/parameters.json', p);
+write_json('results/timing.json',timing);
 write_json('results/controller_gains.json', struct('passive',gains(1,:), ...
     'skyhook',gains(2,:),'lqr',gains(3,:)));
 plot_results(t, road, response, names, p, showFigures);

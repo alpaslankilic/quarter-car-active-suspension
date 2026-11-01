@@ -2,7 +2,7 @@
   "controllers": [
     {
       "controller": "Passive",
-      "body_acceleration_rms_m_s2": 0.3468973673268782,
+      "body_acceleration_rms_m_s2": 0.36095166246273541,
       "peak_body_acceleration_m_s2": 1.5354598290897685,
       "peak_suspension_travel_mm": 15.792856686383566,
       "peak_tire_deflection_mm": 3.3412099899618775,
@@ -14,7 +14,7 @@
     },
     {
       "controller": "Skyhook",
-      "body_acceleration_rms_m_s2": 0.26829290966629937,
+      "body_acceleration_rms_m_s2": 0.27917182292799791,
       "peak_body_acceleration_m_s2": 1.3824128446838924,
       "peak_suspension_travel_mm": 17.180770918251955,
       "peak_tire_deflection_mm": 3.2743795123618589,
@@ -22,11 +22,11 @@
       "peak_abs_actuator_power_W": 42.130907919257972,
       "minimum_tire_normal_force_N": 3064.9570168376122,
       "ode_max_state_error": 7.1806089693302044E-5,
-      "post_bump_settling_s": 0.687
+      "post_bump_settling_s": 0.748
     },
     {
       "controller": "LQR",
-      "body_acceleration_rms_m_s2": 0.1028744342952118,
+      "body_acceleration_rms_m_s2": 0.10704585288950816,
       "peak_body_acceleration_m_s2": 0.56657374750447054,
       "peak_suspension_travel_mm": 20.217634298693351,
       "peak_tire_deflection_mm": 2.780296891051699,
@@ -37,7 +37,7 @@
       "post_bump_settling_s": 0.73100000000000009
     }
   ],
-  "stop_time_s": 3.248,
-  "lqr_acceleration_rms_change_percent": -70.344417691047468,
+  "stop_time_s": 3.015,
+  "lqr_acceleration_rms_change_percent": -70.343438188053909,
   "verification": "PASS"
 }
