@@ -1,0 +1,14 @@
+{
+  "sprungMass": 320,
+  "unsprungMass": 45,
+  "suspensionStiffness": 18000,
+  "suspensionDamping": 1200,
+  "tireStiffness": 185000,
+  "skyhookDamping": 2200,
+  "forceLimit": 1200,
+  "bumpHeight": 0.02,
+  "bumpTime": 0.2,
+  "bumpDuration": 0.25,
+  "sampleTime": 0.001,
+  "stopTime": 3.248
+}
