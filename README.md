@@ -53,6 +53,4 @@ This release tests one deterministic bump with ideal state feedback. It does
 not implement an ISO road profile, weighted human-comfort assessment, actuator
 bandwidth, or sensor noise. Skyhook and LQR use the same passive spring/damper.
 
-Topic: **P04** in Muhammad Mudassir Shakeel's
-[*MATLAB, Simulink & Simscape Project-Based Masterbook*](https://buymeacoffee.com/engrprogrammer).
-The implementation and results are original. [MIT License](LICENSE).
+Code, model and figures are available under the [MIT License](LICENSE).
